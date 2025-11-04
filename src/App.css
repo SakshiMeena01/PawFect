@@ -1,0 +1,78 @@
+/* Reset default Vite styles */
+#root {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f7fa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card styling for Login and SignUp */
+.auth-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.auth-card h2 {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Inputs */
+.auth-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.auth-input:focus {
+  border-color: #007bff;
+}
+
+/* Buttons */
+.auth-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Switch text */
+.switch-text {
+  margin-top: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+.switch-text a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}
