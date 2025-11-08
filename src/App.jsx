@@ -2,6 +2,7 @@
 import React, { useEffect, Suspense } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
+
 // Components
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
@@ -16,6 +17,8 @@ import BreedRecognition from "./Pages/BreedRecognition";
 import ProductDetail from "./Pages/ProductDetail";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
+import SellCategorySelect from "./Pages/SellCategorySelect";
+import UploadProductDynamic from "./Pages/UploadProductDynamic";
 
 // ✅ Import the CartProvider
 import { CartProvider } from "./context/CartContext";
@@ -58,6 +61,8 @@ function App() {
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/sell" element={<SellCategorySelect />} />
+              <Route path="/sell/:category" element={<UploadProductDynamic />} /> 
             </Routes>
           </Suspense>
         </main>
