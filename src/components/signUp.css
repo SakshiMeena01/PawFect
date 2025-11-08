@@ -4,7 +4,7 @@
   --bg-light: #b8e6c6;
 }
 
-/* Ensure full-page centering */
+/* Ensure full-page centering
 html, body {
   height: 100%;
   width: 100%;
@@ -15,7 +15,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* Main wrapper */
 .signup-wrapper {

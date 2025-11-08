@@ -20,7 +20,7 @@ const Login = () => {
     }
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/"); // Redirect on successful login (or wherever desired)
+      navigate("/home"); // Redirect on successful login (or wherever desired)
     } catch (error) {
       alert("Login error: " + error.message);
     }
@@ -30,7 +30,7 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/"); // Redirect on successful Google sign-in
+      navigate("/home"); // Redirect on successful Google sign-in
     } catch (error) {
       alert("Google sign-in error: " + error.message);
     }
