@@ -2,7 +2,6 @@
 // import React, { useEffect, Suspense } from "react";
 // import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
-
 // // Components
 // import Navbar from "./components/navbar";
 // import Footer from "./components/Footer";
@@ -64,7 +63,7 @@
 //               <Route path="/checkout" element={<Checkout />} />
 //               <Route path="/sell" element={<SellCategorySelect />} />
 //               <Route path="/category/:category" element={<CategoryProducts />} />
-//               <Route path="/sell/:category" element={<UploadProductDynamic />} /> 
+//               <Route path="/sell/:category" element={<UploadProductDynamic />} />
 //             </Routes>
 //           </Suspense>
 //         </main>
@@ -101,6 +100,7 @@ import CategoryProducts from "./Pages/CategoryProducts";
 
 // ✅ Cart Context
 import { CartProvider } from "./context/CartContext";
+import PawFectChatbot from "./Pages/pawchat";
 
 // ✅ Toast Notifications
 import { Toaster } from "react-hot-toast";
@@ -141,13 +141,20 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/chat" element={<PawFectChatbot />} />
               <Route path="/breed" element={<BreedRecognition />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/sell" element={<SellCategorySelect />} />
-              <Route path="/category/:category" element={<CategoryProducts />} />
-              <Route path="/sell/:category" element={<UploadProductDynamic />} />
+              <Route
+                path="/category/:category"
+                element={<CategoryProducts />}
+              />
+              <Route
+                path="/sell/:category"
+                element={<UploadProductDynamic />}
+              />
             </Routes>
           </Suspense>
         </main>
