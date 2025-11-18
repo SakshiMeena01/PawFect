@@ -6,6 +6,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 // Components
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
+import DogBreedDetector from "./components/DogBreedDetector";
 
 // Auth Pages
 import Login from "./components/login";
@@ -57,12 +58,15 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/breed" element={<BreedRecognition />} />
+              
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/sell" element={<SellCategorySelect />} />
               <Route path="/sell/:category" element={<UploadProductDynamic />} /> 
+              <Route path="/breed" element={<DogBreedDetector />} />
+
+
             </Routes>
           </Suspense>
         </main>
