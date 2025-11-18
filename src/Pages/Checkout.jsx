@@ -1,76 +1,106 @@
 import React, { useState } from "react";
-import { useCart } from "../context/CartContext";
 
-function Checkout() {
-  const { clearCart } = useCart();
-  const [orderPlaced, setOrderPlaced] = useState(false);
+const Checkout = () => {
+  const [amount, setAmount] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
-  const handleOrder = (e) => {
-    e.preventDefault();
-    clearCart(); // ✅ empty the cart
-    setOrderPlaced(true); // ✅ show success message
+  const handlePayment = async () => {
+    if (!amount || !name || !email || !phone) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    try {
+      // 1️⃣ Call your Node.js backend (Express API)
+      const response = await fetch("http://localhost:5000/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: Number(amount),
+          name,
+          email,
+          phone,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log("Order response:", data);
+
+      if (!data.payment_session_id) {
+        alert("Order creation failed");
+        return;
+      }
+
+      // 2️⃣ Cashfree Checkout SDK
+      const cashfree = new window.Cashfree({
+        mode: "sandbox", // change later to production
+      });
+
+      cashfree.checkout({
+        paymentSessionId: data.payment_session_id,
+        redirectTarget: "_self",
+      });
+    } catch (err) {
+      console.error("Payment error", err);
+      alert("Payment failed");
+    }
   };
 
-  if (orderPlaced) {
-    return (
-      <div className="pt-24 flex flex-col items-center text-center">
-        <h1 className="text-3xl font-bold text-green-600 mb-4">
-          🎉 Order Placed Successfully!
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Thank you for shopping with PawSmart. Your furry friend will love it! 🐾
-        </p>
-        <a
-          href="/home"
-          className="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700"
-        >
-          Continue Shopping
-        </a>
-      </div>
-    );
-  }
-
   return (
-    <div className="pt-24 max-w-4xl mx-auto px-6">
-      <h1 className="text-3xl font-bold mb-6">Checkout</h1>
-      <form
-        className="bg-white p-6 rounded-lg shadow space-y-4"
-        onSubmit={handleOrder}
-      >
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="border px-4 py-2 w-full rounded"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          className="border px-4 py-2 w-full rounded"
-          required
-        />
-        <input
-          type="text"
-          placeholder="City"
-          className="border px-4 py-2 w-full rounded"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Pincode"
-          className="border px-4 py-2 w-full rounded"
-          required
-        />
+    <div style={{ maxWidth: 400, margin: "0 auto", padding: 20 }}>
+      <h2>Checkout</h2>
 
-        <button
-          type="submit"
-          className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 w-full"
-        >
-          Place Order
-        </button>
-      </form>
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={{ width: "100%", padding: 10, marginBottom: 10 }}
+      />
+
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{ width: "100%", padding: 10, marginBottom: 10 }}
+      />
+
+      <input
+        type="text"
+        placeholder="Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        style={{ width: "100%", padding: 10, marginBottom: 10 }}
+      />
+
+      <input
+        type="number"
+        placeholder="Amount"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+        style={{ width: "100%", padding: 10, marginBottom: 10 }}
+      />
+
+      <button
+        onClick={handlePayment}
+        style={{
+          width: "100%",
+          padding: 12,
+          backgroundColor: "#2ecc71",
+          color: "white",
+          border: "none",
+          fontSize: 16,
+          cursor: "pointer",
+        }}
+      >
+        Pay Now
+      </button>
     </div>
   );
-}
+};
 
 export default Checkout;
