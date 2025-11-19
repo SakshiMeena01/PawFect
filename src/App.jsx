@@ -91,7 +91,7 @@ import SignUp from "./components/SignUp";
 
 // ✅ Main Pages
 import Home from "./Pages/Home";
-import BreedRecognition from "./Pages/BreedRecognition";
+
 import ProductDetail from "./Pages/ProductDetail";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
